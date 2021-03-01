@@ -1,0 +1,31 @@
+@startuml Supermarket-dominio
+Class Supermarket
+enum Paises
+Class Ticket
+Supermarket <-- Paises
+Supermarket <-- Ticket
+Class Header{
+    - NameSupermarket
+    - Date
+    - Hour
+}
+Class Footer{
+    - NameSupermarket
+    - Date
+    - Hour
+}
+Class Body
+Ticket <-- Header
+Ticket <-- Body
+Ticket <-- Footer
+Class OperationLine
+Body <-- OperationLine
+Class SellLine 
+Class RepeatLine
+Class UndoLine
+Class BackSellLine
+OperationLine <|-- SellLine
+OperationLine <|-- RepeatLine
+OperationLine <|-- UndoLine
+OperationLine <|-- BackSellLine
+@enduml

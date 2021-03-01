@@ -1,0 +1,51 @@
+@startuml Supermarket-relaciones
+Class Supermarket
+Class View
+enum Countries
+Class Ticket{
+    + CreateTicket(Composer)
+}
+Supermarket <-- Countries
+Supermarket <-- Ticket
+Class Header{
+    - NameSupermarket
+    - Date
+    - Hour
+}
+Class Footer{
+    - NameSupermarket
+    - Date
+    - Hour
+}
+Class Body
+Ticket ..> Header
+Ticket ..> Body
+Ticket ..> Footer
+Ticket --> Composer
+Composer <.. Countries
+Class OperationLine
+Body <-- "1..n" OperationLine
+Class SellLine 
+Class RepeatLine
+Class UndoLine
+Class BackSellLine
+OperationLine <|-- SellLine
+OperationLine <|-- RepeatLine
+OperationLine <|-- UndoLine
+OperationLine <|-- BackSellLine
+Class Composer{
+    + CreateHeader(country)
+    + CreateBody(country)
+    + CreateFooter(country)
+}
+
+abstract Class Menu 
+Class MenuCountry
+Class MenuOperationLine
+Supermarket <-- View
+View <-- Menu
+Menu <|-- MenuCountry
+Menu <|-- MenuOperationLine
+MenuCountry <.. Countries
+MenuOperationLine <.. OperationLine
+@enduml
